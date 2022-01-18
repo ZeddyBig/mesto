@@ -22,12 +22,20 @@
 }
 
 .header__logo {
+	transition: opacity ease 0.5s;
+}
+
+.header__logo:hover {
+	opacity: 0.6;
+}
+
+.header__logo-image {
 	width: 142px;
 	height: 33px;
-	margin: 0 0 41px;
 }
 
 .header__line {
+	margin: 41px 0 0;
 	width: 880px;
 	height: 0px;
 	opacity: 0.7;
@@ -73,6 +81,11 @@
 
 .profile__edit {
 	margin: 0 0 0 18px;
+	transition: opacity ease 0.5s;
+}
+
+.profile__edit:hover {
+	opacity: 0.6;
 }
 
 .profile__edit-img {
@@ -98,6 +111,11 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	transition: opacity ease 0.5s;
+}
+
+.profile__add-button:hover {
+	opacity: 0.6;
 }
 
 .profile__plus {
@@ -164,6 +182,16 @@
 
 .element__like-button {
 	margin-left: 30px;
+	border: 0;
+	margin: 0;
+	background: 0;
+	padding: 0;
+	transition: opacity ease 0.5s;
+}
+
+.element__like-button:hover {
+	cursor: pointer;
+	opacity: 0.5;
 }
 
 .footer {
@@ -181,18 +209,22 @@
 }
 
 .popup {
+	display: none;
+	position: absolute;
+}
+
+.popup__overlay {
 	position: fixed;
 	background: #000;
 	opacity: 0.5;
 	width: 100%; height: 100%;
 	top: 0; left: 0;
-	cursor: pointer;
 	z-index: 9;
 }
 
 .popup__container {
-	width: 430px;
-	height: 330px;
+	width: 358px;
+	height: 259px;
 	background: #FFFFFF;
 	box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
 	border-radius: 10px;
@@ -201,7 +233,6 @@
 	margin: auto;
 	padding: 34px 36px 37px;
 	opacity: 1;
-/*	display: none; */
 	z-index: 10;
 	text-align: left;
 }
@@ -211,7 +242,77 @@
 	font-size: 24px;
 	line-height: 29px;
 	color: #000;
+	padding: 0;
+	margin: 0 0 54px;
+	width: 100%;
 }
+
+.popup__container-name {
+	border: 0;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 26px;
+}
+
+.popup__container-job {
+	border: 0;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 26px;
+}
+
+.popup__container-line {
+	margin: 1px 0 30px;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.popup__container-line_last {
+	margin: 1px 0 48px;
+}
+
+.popup__container-button {
+	width: 100%;
+	height: 50px;
+	background: #000000;
+	border-radius: 2px;
+	color: #FFF;
+	font-size: 18px;
+	line-height: 22px;
+	text-align: center;
+	padding: 0;
+	margin: 0;
+	border: 0;
+	transition: opacity 0.5s ease;
+}
+
+.popup__container-button:hover {
+	cursor: pointer;
+	opacity: 0.8;
+}
+
+.popup__close-button {
+	position: fixed;
+	top: -360px; left: 470px; right: 0; bottom: 0;
+	margin: auto;
+	padding: 0;
+	z-index: 11;
+	width: 32px;
+	height: 32px;
+	transition: opacity 0.5s ease;
+}
+
+.popup__close-button:hover {
+	opacity: 0.6;
+}
+
+.popup__close-button-icon {
+	width: 32px;
+	height: 32px;
+	z-index: 12;
+}
+
 
 @media screen and (max-width: 1023px) {
 	.page {
