@@ -41,7 +41,6 @@
 	align-items: center;
 	color: #FFFFFF;
 	width: 880px;
-	height: 120px;
 	margin: 0 0 50px;
 }
 
@@ -76,6 +75,11 @@
 	margin: 0 0 0 18px;
 }
 
+.profile__edit-img {
+	width: 24px;
+	height: 24px;
+}
+
 .profile__job {
 	font-style: normal;
 	font-weight: normal;
@@ -102,6 +106,8 @@
 }
 
 .elements {
+	display: flex;
+	justify-content: center;
 	margin: 0 0 67px;
 }
 
@@ -170,4 +176,130 @@
 	font-size: 18px;
 	line-height: 22px;
 	color: #545454;
+	margin: 0;
+	padding: 0;
+}
+
+@media screen and (max-width: 1023px) {
+	.page {
+		max-width: 580px;
+	}
+
+	.header__line {
+		max-width: 580px;
+	}
+
+	.profile {
+		max-width: 580px;
+	}
+
+	.profile__name {
+		font-size: 30px;
+		line-height: 32px;
+	}
+
+	.profile__job {
+		font-size: 14px;
+		margin: 14px 0 0 0;
+	}
+
+	.elements__list {
+		max-width: 580px;
+		gap: 16px;
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media screen and (max-width: 580px) {
+	.page {
+		max-width: 100%;
+	}
+
+	.header {
+		margin: 28px 0 38px;
+	}
+
+	.header__logo {
+		width: 104px;
+		height: 24px;
+		margin: 0 0 31px 27px;
+	}
+
+	.header__line {
+		width: 100%;
+	}
+
+	.profile {
+		flex-direction: column;
+		width: 282px;
+		margin: 0 auto 36px;
+	}
+
+	.profile__main {
+		flex-direction: column;
+		width: 282px;
+		margin: 0 0 36px;
+	}
+
+	.profile__avatar {
+		margin: 0 auto 26px;
+	}
+
+	.profile__name-and-edit {
+		justify-content: center;
+	}
+
+	.profile__name {
+		font-size: 27px;
+		line-height: 33px;
+	}
+
+	.profile__edit {
+		margin: 0 0 0 10px;
+	}
+
+	.profile__edit-img {
+		width: 18px;
+		height: 18px;
+	}
+
+	.profile__job {
+		font-size: 14px;
+		line-height: 17px;
+		margin: 14px auto 0;
+		text-align: center;
+	}
+
+	.profile__add-button {
+		width: 282px;
+	}
+
+	.profile__plus {
+		width: 16px;
+		height: 16px;
+	}	
+
+	.elements {
+		margin: 0 0 48px;
+	}
+
+	.elements__list {
+		max-width: 282px;
+		grid-template-columns: repeat(1, 1fr);
+		justify-items: center;
+		margin: 0 0 20px;
+	}
+
+	.elements__list:last-child {
+		margin: 0;
+	}
+
+	.footer {
+		margin: 0 0 36px 19px;
+	}
+	
+	.footer__text {
+		font-size: 14px;
+		line-height: 17px;
+	}
 }
