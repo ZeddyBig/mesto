@@ -1,29 +1,25 @@
 let page = document.querySelector('.page');
-let likeButton = page.querySelectorAll('.element__like-button');
-for (let i = 0; i < likeButton.length; i++) {
-  likeButton[i].onclick = function(){
-    if (likeButton[i].innerHTML === '<img src="images/element__like-button.svg" alt="Лайк">') {
-			likeButton[i].innerHTML = '<img src="images/element__like-button_active.svg" alt="Лайк">';
-		}
-		else {
-			likeButton[i].innerHTML = '<img src="images/element__like-button.svg" alt="Лайк">';
-		}
-	};
-};
 
 let profileEdit = page.querySelector('.profile__edit');
 let popup = page.querySelector('.popup');
+
 profileEdit.addEventListener('click', function(){
-	popup.style = `display: block;`;
+	popup.classList.add('popup_opened');
+	let profileName = page.querySelector('.profile__name');
+	let profileJob = page.querySelector('.profile__job');
+	let nameInput = formElement.querySelector('.popup__container-line_name');
+	let jobInput = formElement.querySelector('.popup__container-line_job');
+	nameInput.value = profileName.textContent;
+	jobInput.value = profileJob.textContent;
 });
 
 let popupCloseButton = page.querySelector('.popup__close-button');
 popupCloseButton.addEventListener('click', function(){
-	popup.style = `display: none;`;
+	popup.classList.remove('popup_opened');
 });
 
 // Находим форму в DOM
-let formElement = page.querySelector('.popup__container');// Воспользуйтесь методом querySelector()
+let formElement = page.querySelector('.popup__container-form');// Воспользуйтесь методом querySelector()
 // Находим поля формы в DOM
 
 // Обработчик «отправки» формы, хотя пока
@@ -33,15 +29,15 @@ function formSubmitHandler (evt) {
                                                 // Так мы можем определить свою логику отправки.
                                                 // О том, как это делать, расскажем позже.
     // Получите значение полей jobInput и nameInput из свойства value
-    let nameInput = formElement.querySelector('.popup__container-name');// Воспользуйтесь инструментом .querySelector()
-		let jobInput = formElement.querySelector('.popup__container-job');// Воспользуйтесь инструментом .querySelector()
+    let nameInput = formElement.querySelector('.popup__container-line_name');// Воспользуйтесь инструментом .querySelector()
+		let jobInput = formElement.querySelector('.popup__container-line_job');// Воспользуйтесь инструментом .querySelector()
     // Выберите элементы, куда должны быть вставлены значения полей
     let profileName = page.querySelector('.profile__name');
 		let profileJob = page.querySelector('.profile__job');
     // Вставьте новые значения с помощью textContent
     profileName.textContent = nameInput.value;
     profileJob.textContent = jobInput.value;
-    popup.style = `display: none;`;
+    popup.classList.remove('popup_opened');
 }
 
 // Прикрепляем обработчик к форме:

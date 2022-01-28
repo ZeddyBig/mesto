@@ -15,7 +15,6 @@
 			<a href="#" class="header__logo">
 				<img src="images/logo.svg" alt="Логотип" class="header__logo-image">
 			</a>
-			<div class="header__line"></div>
 		</header>
 
 		<main class="content">
@@ -25,14 +24,12 @@
 					<div class="profile__info">
 						<div class="profile__name-and-edit">
 							<h1 class="profile__name">Жак-Ив Кусто</h1>
-							<a href="#" class="profile__edit"><img src="images/profile__edit.svg" alt="Редактировать профиль" class="profile__edit-img"></a>
+							<button type="button" class="profile__edit"></button>
 						</div>				
 						<p class="profile__job">Исследователь океана</p>
 					</div>
 				</div>
-				<a href="" class="profile__add-button">
-					<img src="images/edit.svg" alt="Добавить" class="profile__plus">
-				</a>
+				<button type="button" class="profile__add-button"></button>
 			</section>
 
 			<section class="elements">
@@ -41,7 +38,7 @@
 						<img src="images/karachaevsk.jpg" alt="Карачаевск" class="element__image">
 						<div class="element__description">
 							<h2 class="element__name">Карачаевск</h2>
-							<button class="element__like-button"><img src="images/element__like-button.svg" alt="Лайк"></button>
+							<button type="button" class="element__like-button"></button>
 						</div>
 					</li>
 
@@ -49,7 +46,7 @@
 						<img src="images/elbrus.jpg" alt="Гора Эльбрус" class="element__image">
 						<div class="element__description">
 							<h2 class="element__name">Гора Эльбрус</h2>
-							<button class="element__like-button"><img src="images/element__like-button.svg" alt="Лайк"></button>
+							<button type="button" class="element__like-button"></button>
 						</div>
 					</li>
 
@@ -57,7 +54,7 @@
 						<img src="images/dombay.jpg" alt="Домбай" class="element__image">
 						<div class="element__description">
 							<h2 class="element__name">Домбай</h2>
-							<button class="element__like-button"><img src="images/element__like-button.svg" alt="Лайк"></button>
+							<button type="button" class="element__like-button"></button>
 						</div>
 					</li>
 
@@ -65,7 +62,7 @@
 						<img src="images/elbrus2.jpg" alt="Гора Эльбрус" class="element__image">
 						<div class="element__description">
 							<h2 class="element__name">Гора Эльбрус</h2>
-							<button class="element__like-button"><img src="images/element__like-button.svg" alt="Лайк"></button>
+							<button type="button" class="element__like-button"></button>
 						</div>
 					</li>
 
@@ -73,7 +70,7 @@
 						<img src="images/dombay2.jpg" alt="Домбай" class="element__image">
 						<div class="element__description">
 							<h2 class="element__name">Домбай</h2>
-							<button class="element__like-button"><img src="images/element__like-button.svg" alt="Лайк"></button>
+							<button type="button" class="element__like-button"></button>
 						</div>
 					</li>
 
@@ -81,7 +78,7 @@
 						<img src="images/karachaevo-ch.jpg" alt="Карачаево" class="element__image">
 						<div class="element__description">
 							<h2 class="element__name">Карачаево-Что-то там огромное...</h2>
-							<button class="element__like-button"><img src="images/element__like-button.svg" alt="Лайк"></button>
+							<button type="button" class="element__like-button"></button>
 						</div>
 					</li>
 				</ul>
@@ -93,18 +90,14 @@
 		</footer>
 		
 		<div class="popup">
-			<a href="#" class="popup__close-button">
-				<img src="images/popup__close-button-icon.svg" alt="Закрыть попап" class="popup__close-button-icon">
-			</a>
-			<form action="#" class="popup__container">
+			<div class="popup__container">
 				<h2 class="popup__container-heading">Редактировать профиль</h2>
-				<input type="text" value="Жак-Ив Кусто" placeholder="Имя" class="popup__container-name">
-				<div class="popup__container-line"></div>
-				<input type="text" value="Исследователь океана" placeholder="Работа" class="popup__container-job">
-				<div class="popup__container-line popup__container-line_last"></div>
-				<button type="submit" class="popup__container-button">Сохранить</button>
-			</form>
-			<div class="popup__overlay"></div>
+				<button type="button" class="popup__close-button"></button>
+				<form action="#" name="popup__container-form" class="popup__container-form">
+					<input type="text" value="Жак-Ив Кусто" name="popup__container-line_name" placeholder="Имя" class="popup__container-line popup__container-line_name">
+					<input type="text" value="Исследователь океана" name="popup__container-line_job" placeholder="Работа" class="popup__container-line popup__container-line_job">
+					<button type="submit" class="popup__container-button">Сохранить</button>
+				</form>
 		</div>
 	</div>
 
