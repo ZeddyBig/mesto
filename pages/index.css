@@ -43,6 +43,6 @@
 @import url(../blocks/popup/__container-line/popup__container-line.css);
 @import url(../blocks/popup/__container-button/popup__container-button.css);
 @import url(../blocks/popup/__close-button/popup__close-button.css);
-@import url(../blocks/popup/__container-line/_input/popup__container-line_input_name.css);
-@import url(../blocks/popup/__container-line/_input/popup__container-line_input_job.css);
+@import url(../blocks/popup/__container-line/_theme/popup__container-line_theme_name.css);
+@import url(../blocks/popup/__container-line/_theme/popup__container-line_theme_job.css);
 /* Конец popup */

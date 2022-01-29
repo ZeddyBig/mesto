@@ -15,8 +15,8 @@ let formElement = page.querySelector('.popup__container-form');
 
 let profileName = page.querySelector('.profile__name');
 let profileJob = page.querySelector('.profile__job');
-let nameInput = formElement.querySelector('.popup__container-line_input_name');
-let jobInput = formElement.querySelector('.popup__container-line_input_job');
+let nameInput = formElement.querySelector('.popup__container-line_theme_name');
+let jobInput = formElement.querySelector('.popup__container-line_theme_job');
 
 profileEdit.addEventListener('click', function(){
 	openPopup();
