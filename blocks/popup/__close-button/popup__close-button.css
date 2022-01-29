@@ -1,7 +1,7 @@
 .popup__close-button {
 	position: absolute;
 	top: -40px;
-	left: 430px;
+	right: -39px;
 	padding: 0;
 	border: 0;
 	z-index: 11;
@@ -23,7 +23,7 @@
 	.popup__close-button {
 		width: 20px;
 		height: 20px;
-		top: -30px;
-		left: 260px;
+		top: -37px;
+		right: 0;
 	}
 }

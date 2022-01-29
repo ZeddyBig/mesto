@@ -1,7 +1,7 @@
 .profile__name-and-edit {
 	display: flex;
 	flex-direction: row;
-	align-items: center;
+	align-items: baseline;
 }
 
 @media screen and (max-width: 600px) {
