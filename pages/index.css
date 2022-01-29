@@ -35,13 +35,14 @@
 /* Конец footer */
 /* Начало popup */
 @import url(../blocks/popup/popup.css);
-@import url(../blocks/popup/_opened/_opened.css);
+@import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/popup/__overlay/popup__overlay.css);
 @import url(../blocks/popup/__container/popup__container.css);
 @import url(../blocks/popup/__container-heading/popup__container-heading.css);
-@import url(../blocks/popup/__container-form/__container-form.css);
+@import url(../blocks/popup/__container-form/popup__container-form.css);
 @import url(../blocks/popup/__container-line/popup__container-line.css);
 @import url(../blocks/popup/__container-button/popup__container-button.css);
 @import url(../blocks/popup/__close-button/popup__close-button.css);
-@import url(../blocks/popup/__close-button-icon/popup__close-button-icon.css);
+@import url(../blocks/popup/__container-line/_input/popup__container-line_input_name.css);
+@import url(../blocks/popup/__container-line/_input/popup__container-line_input_job.css);
 /* Конец popup */
