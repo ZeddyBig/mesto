@@ -4,7 +4,7 @@ let profileEdit = page.querySelector('.profile__edit');
 let profileAddButton = page.querySelector('.profile__add-button');
 let popupProfileEdit = page.querySelector('.popup_profile-edit');
 let popupAddElement = page.querySelector('.popup_add-element');
-let popupOpenedImg = page.querySelector('.popup_opened-img');
+let popupOpenedImg = page.querySelector('.popup-opened-img');
 
 function openPopup() {
 	popupProfileEdit.classList.add('popup_opened');
@@ -52,7 +52,7 @@ let popupCloseButton = page.querySelector('.popup__close-button');
 popupCloseButton.addEventListener('click', closePopup);
 let popupCloseButtonElement = page.querySelector('.popup__close-button_element');
 popupCloseButtonElement.addEventListener('click', closePopupElement);
-let popupCloseButtonImg = page.querySelector('.popup__close-button_opened-img');
+let popupCloseButtonImg = page.querySelector('.popup-opened-img__close-button');
 popupCloseButtonImg.addEventListener('click', closePopupImg);
 
 
@@ -103,8 +103,8 @@ function addElement (elem) {
     });
 
     const elementImageButton = page.querySelector('.element__image-button');
-    const popupFullImg = page.querySelector('.popup__full-img');
-    const popupFullImgText = page.querySelector('.popup__full-img-text');
+    const popupFullImg = page.querySelector('.popup-opened-img__full-img');
+    const popupFullImgText = page.querySelector('.popup-opened-img__full-img-text');
     elementImageButton.addEventListener('click', function () {
         openPopupImg();
         popupFullImg.src = elementCard.querySelector('.element__image').src;
