@@ -102,13 +102,6 @@ function addElement (elem) {
         evt.target.classList.toggle('element__like-button_active');
     });
 
-    elementTrash = page.querySelector('.element__trash');
-
-    elementTrash.addEventListener('click', function () {
-        const element = document.querySelector('.element');
-        element.remove();
-    });
-
     const elementImageButton = page.querySelector('.element__image-button');
     const popupFullImg = page.querySelector('.popup__full-img');
     const popupFullImgText = page.querySelector('.popup__full-img-text');
@@ -119,6 +112,13 @@ function addElement (elem) {
         popupFullImgText.textContent = elementCard.querySelector('.element__image').alt;
     });
 
+    /* Начало. Удаление элемента */
+    const elementTrash = document.querySelector('.element__trash'); 
+    elementTrash.addEventListener('click', function () {
+        const elementDelete = elementTrash.closest('.element');
+        elementDelete.remove();
+    });
+    /* Конец. Удаление элемента */
 }
 /* Конец. Добавление любой карточки */
 
