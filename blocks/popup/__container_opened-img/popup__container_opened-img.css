@@ -4,3 +4,10 @@
 	flex-direction: column;
 	margin: 90px auto 68px;
 }
+
+@media screen and (max-width: 900px) {
+	.popup__container_opened-img {
+		margin: auto;
+		max-width: 75%;
+	}
+}

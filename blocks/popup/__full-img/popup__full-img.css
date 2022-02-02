@@ -2,3 +2,9 @@
 	margin-bottom: 10px;
 	max-height: 75vh;
 }
+
+@media screen and (max-width: 900px) {
+	.popup__full-img {
+		max-width: 75vh;
+	}
+}
