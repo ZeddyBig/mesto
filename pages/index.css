@@ -28,6 +28,8 @@
 @import url(../blocks/element/__description/element__description.css);
 @import url(../blocks/element/__name/element__name.css);
 @import url(../blocks/element/__like-button/element__like-button.css);
+@import url(../blocks/element/__like-button/_active/element__like-button_active.css);
+@import url(../blocks/element/__trash/element__trash.css);
 /* Конец element */
 /* Начало footer */
 @import url(../blocks/footer/footer.css);
@@ -46,3 +48,41 @@
 @import url(../blocks/popup/__container-line/_theme/popup__container-line_theme_name.css);
 @import url(../blocks/popup/__container-line/_theme/popup__container-line_theme_job.css);
 /* Конец popup */
+
+.element__image-button {
+	background: 0;
+	padding: 0;
+	border: 0;
+	transition: visibility 0s, opacity 0.5s linear;
+}
+
+.element__image-button:hover {
+	cursor: pointer;
+	visibility: visible;
+}
+
+.popup__full-img {
+	margin-bottom: 10px;
+	max-height: 75vh;
+}
+
+.popup__container_opened-img {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	margin: 90px auto 68px;
+}
+
+.popup__close-button_opened-img {
+	position: absolute;
+	right: -40px;
+}
+
+.popup__full-img-text {
+	padding: 0;
+	margin: 0;
+	font-weight: normal;
+	font-size: 12px;
+	line-height: 15px;
+	color: #FFFFFF;
+}
