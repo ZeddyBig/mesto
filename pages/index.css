@@ -30,7 +30,6 @@
 @import url(../blocks/element/__like-button/element__like-button.css);
 @import url(../blocks/element/__like-button/_active/element__like-button_active.css);
 @import url(../blocks/element/__trash/element__trash.css);
-@import url(../blocks/element/__image-button/element__image-button.css);
 /* Конец element */
 /* Начало footer */
 @import url(../blocks/footer/footer.css);
@@ -49,9 +48,9 @@
 @import url(../blocks/popup/__container-line/_theme/popup__container-line_theme_name.css);
 @import url(../blocks/popup/__container-line/_theme/popup__container-line_theme_job.css);
 /* Конец popup */
-/* Начало popup-opened-img */
-@import url(../blocks/popup-opened-img/__container/popup-opened-img__container.css);
-@import url(../blocks/popup-opened-img/__full-img/popup-opened-img__full-img.css);
-@import url(../blocks/popup-opened-img/__full-img-text/popup-opened-img__full-img-text.css);
-@import url(../blocks/popup-opened-img/__close-button/popup-opened-img__close-button.css);
-/* Конец popup-opened-img */
+/* Начало popup_type_opened-img */
+@import url(../blocks/popup_type_opened-img/__container/popup_type_opened-img__container.css);
+@import url(../blocks/popup_type_opened-img/__full-img/popup_type_opened-img__full-img.css);
+@import url(../blocks/popup_type_opened-img/__full-img-text/popup_type_opened-img__full-img-text.css);
+@import url(../blocks/popup_type_opened-img/__close-button/popup_type_opened-img__close-button.css);
+/* Конец popup_type_opened-img */
