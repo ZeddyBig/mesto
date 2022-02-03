@@ -39,7 +39,7 @@ const popupCloseButtonElement = page.querySelector('.popup__close-button_element
 popupCloseButtonElement.addEventListener('click', function() {
     closePopup(popupAddElement);
 });
-const popupCloseButtonImg = page.querySelector('.popup-img__close-button_type_opened-img');
+const popupCloseButtonImg = page.querySelector('.popup__close-button_type_opened-img');
 popupCloseButtonImg.addEventListener('click', function() {
     closePopup(popupOpenedImg);
 });
@@ -63,8 +63,8 @@ function createCard (elem) {
     });
 
     let elementImageButton = elementCard.querySelector('.element__image');
-    let popupFullImg = page.querySelector('.popup-img__full-img_type_opened-img');
-    let popupFullImgText = page.querySelector('.popup-img__full-img_type_opened-img-text');
+    let popupFullImg = page.querySelector('.popup-img__full-img');
+    let popupFullImgText = page.querySelector('.popup-img__full-img-text');
     elementImageButton.addEventListener('click', function () {
         openPopup(popupOpenedImg);
         popupFullImg.src = elementImage.src;
