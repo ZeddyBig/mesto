@@ -1,4 +1,4 @@
-.popup_type_opened-img__container {
+.popup__container_type_opened-img {
 	position: relative;
 	display: flex;
 	flex-direction: column;
@@ -6,7 +6,7 @@
 }
 
 @media screen and (max-width: 900px) {
-	.popup_type_opened-img__container {
+	.popup__container_type_opened-img {
 		margin: auto;
 		max-width: 75%;
 	}

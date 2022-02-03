@@ -1,10 +1,10 @@
-.popup_type_opened-img__full-img {
+.popup__full-img_type_opened-img {
 	margin-bottom: 10px;
 	max-height: 75vh;
 }
 
 @media screen and (max-width: 900px) {
-	.popup_type_opened-img__full-img {
+	.popup__full-img_type_opened-img {
 		max-width: 75vh;
 	}
 }
