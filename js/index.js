@@ -16,10 +16,10 @@ function closePopup(popup) {
 
 const formProfileEdit = page.querySelector('.popup__container-form_profile-edit');
 
-let profileName = page.querySelector('.profile__name');
-let profileJob = page.querySelector('.profile__job');
-let nameInput = formProfileEdit.querySelector('.popup__container-line_theme_name');
-let jobInput = formProfileEdit.querySelector('.popup__container-line_theme_job');
+const profileName = page.querySelector('.profile__name');
+const profileJob = page.querySelector('.profile__job');
+const nameInput = formProfileEdit.querySelector('.popup__container-line_theme_name');
+const jobInput = formProfileEdit.querySelector('.popup__container-line_theme_job');
 
 profileEditButton.addEventListener('click', function() {
 	openPopup(popupProfileEdit);
@@ -31,8 +31,8 @@ profileAddButton.addEventListener('click', function() {
     openPopup(popupAddElement);
 });
 
-const popupCloseButton = page.querySelector('.popup__close-button');
-popupCloseButton.addEventListener('click', function() {
+const popupCloseButtonEdit = page.querySelector('.popup__close-button');
+popupCloseButtonEdit.addEventListener('click', function() {
     closePopup(popupProfileEdit);
 });
 const popupCloseButtonElement = page.querySelector('.popup__close-button_element');
@@ -47,12 +47,12 @@ popupCloseButtonImg.addEventListener('click', function() {
 // ---------------------------------------------------------------------------
 
 /* Начало. Добавление любой карточки */
-let elementTemplate = document.querySelector('#element-template').content;
-let elementsList = document.querySelector('.elements__list');
+const elementTemplate = document.querySelector('#element-template').content;
+const elementsList = document.querySelector('.elements__list');
 
 function createCard (elem) {
-    let elementCard = elementTemplate.querySelector('.element').cloneNode(true);
-    let elementImage = elementCard.querySelector('.element__image');
+    const elementCard = elementTemplate.querySelector('.element').cloneNode(true);
+    const elementImage = elementCard.querySelector('.element__image');
 
     elementImage.src = elem.link;
     elementImage.alt = elem.name;
@@ -62,9 +62,9 @@ function createCard (elem) {
         evt.target.classList.toggle('element__like-button_active');
     });
 
-    let elementImageButton = elementCard.querySelector('.element__image');
-    let popupFullImg = page.querySelector('.popup-img__full-img');
-    let popupFullImgText = page.querySelector('.popup-img__full-img-text');
+    const elementImageButton = elementCard.querySelector('.element__image');
+    const popupFullImg = page.querySelector('.popup-img__full-img');
+    const popupFullImgText = page.querySelector('.popup-img__full-img-text');
     elementImageButton.addEventListener('click', function () {
         openPopup(popupOpenedImg);
         popupFullImg.src = elementImage.src;
@@ -73,9 +73,9 @@ function createCard (elem) {
     });
 
     /* Начало. Удаление элемента */
-    let elementTrash = elementCard.querySelector('.element__trash'); 
+    const elementTrash = elementCard.querySelector('.element__trash'); 
     elementTrash.addEventListener('click', function () {
-        let elementDelete = elementTrash.closest('.element');
+        const elementDelete = elementTrash.closest('.element');
         elementDelete.remove();
     });
     /* Конец. Удаление элемента */
