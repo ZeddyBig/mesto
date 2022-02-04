@@ -111,7 +111,7 @@ const placeLinkInput = formAddElement.querySelector('.popup__container-line_them
 function handleNewCardSubmit (evt) {
     evt.preventDefault();
 
-    let newCard = { 
+    const newCard = { 
         name: placeNameInput.value,
         link: placeLinkInput.value 
     }
