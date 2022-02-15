@@ -8,10 +8,12 @@ const popupOpenedImg = page.querySelector('.popup_type_opened-img');
 
 function openPopup(popup) {
 	popup.classList.add('popup_opened');
+    document.addEventListener('keydown', escapeButton);
 };
 
 function closePopup(popup) {
 	popup.classList.remove('popup_opened');
+    document.addEventListener('keydown', escapeButton);
 };
 
 const formProfileEdit = page.querySelector('.popup__container-form_profile-edit');
@@ -124,3 +126,21 @@ function handleNewCardSubmit (evt) {
 
 formAddElement.addEventListener('submit', handleNewCardSubmit);
 /* Конец. Добавление элемента */
+
+/* Закрытие popup по нажатию Escape */
+function escapeButton(evt) {
+  if (evt.key === "Escape") {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup (openedPopup);
+  }
+}
+
+/* Закрытие popup по клику на тёмное место */
+const popups = Array.from(document.querySelectorAll('.popup'));
+popups.forEach((popupElement) => {
+    popupElement.addEventListener('click', function (evt) {
+        if (evt.target.classList.contains('popup_opened')) {
+            closePopup(popupElement);
+        }
+    });
+});
