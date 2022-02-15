@@ -59,4 +59,4 @@
 @import url(../blocks/popup/__error/__error-first/popup__error-first.css);
 @import url(../blocks/popup/__error/__error-second/popup__error-second.css);
 @import url(../blocks/popup/__error/_active/popup__error_active.css);
-@import url(../blocks/input/__text/_type/_error/input__text_type_error.css);
+@import url(../blocks/popup/__input-type-error/popup__input-type-error.css);
