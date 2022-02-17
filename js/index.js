@@ -1,10 +1,25 @@
 const page = document.querySelector('.page');
-
 const profileEditButton = page.querySelector('.profile__edit');
 const profileAddButton = page.querySelector('.profile__add-button');
 const popupProfileEdit = page.querySelector('.popup_type_profile-edit');
 const popupAddElement = page.querySelector('.popup_type_add-element');
 const popupOpenedImg = page.querySelector('.popup_type_opened-img');
+const formProfileEdit = page.querySelector('.popup__container-form_profile-edit');
+const profileName = page.querySelector('.profile__name');
+const profileJob = page.querySelector('.profile__job');
+const nameInput = formProfileEdit.querySelector('.popup__container-line_theme_name');
+const jobInput = formProfileEdit.querySelector('.popup__container-line_theme_job');
+const popupCloseButtonEdit = page.querySelector('.popup__close-button');
+const popupCloseButtonElement = page.querySelector('.popup__close-button_element');
+const popupCloseButtonImg = page.querySelector('.popup__close-button_type_opened-img');
+const elementTemplate = document.querySelector('#element-template').content;
+const elementsList = document.querySelector('.elements__list');
+const formAddElement = page.querySelector('.popup__container-form_add-element');
+const placeNameInput = formAddElement.querySelector('.popup__container-line_theme_place-name');
+const placeLinkInput = formAddElement.querySelector('.popup__container-line_theme_place-link');
+const popups = Array.from(document.querySelectorAll('.popup'));
+const popupButtonSubmit = popupAddElement.querySelector('.popup__button');
+
 
 function openPopup(popup) {
 	popup.classList.add('popup_opened');
@@ -16,13 +31,6 @@ function closePopup(popup) {
     document.addEventListener('keydown', escapeButton);
 };
 
-const formProfileEdit = page.querySelector('.popup__container-form_profile-edit');
-
-const profileName = page.querySelector('.profile__name');
-const profileJob = page.querySelector('.profile__job');
-const nameInput = formProfileEdit.querySelector('.popup__container-line_theme_name');
-const jobInput = formProfileEdit.querySelector('.popup__container-line_theme_job');
-
 profileEditButton.addEventListener('click', function() {
 	openPopup(popupProfileEdit);
 	nameInput.value = profileName.textContent;
@@ -33,15 +41,14 @@ profileAddButton.addEventListener('click', function() {
     openPopup(popupAddElement);
 });
 
-const popupCloseButtonEdit = page.querySelector('.popup__close-button');
 popupCloseButtonEdit.addEventListener('click', function() {
     closePopup(popupProfileEdit);
 });
-const popupCloseButtonElement = page.querySelector('.popup__close-button_element');
+
 popupCloseButtonElement.addEventListener('click', function() {
     closePopup(popupAddElement);
 });
-const popupCloseButtonImg = page.querySelector('.popup__close-button_type_opened-img');
+
 popupCloseButtonImg.addEventListener('click', function() {
     closePopup(popupOpenedImg);
 });
@@ -49,12 +56,13 @@ popupCloseButtonImg.addEventListener('click', function() {
 // ---------------------------------------------------------------------------
 
 /* Начало. Добавление любой карточки */
-const elementTemplate = document.querySelector('#element-template').content;
-const elementsList = document.querySelector('.elements__list');
 
 function createCard (elem) {
     const elementCard = elementTemplate.querySelector('.element').cloneNode(true);
     const elementImage = elementCard.querySelector('.element__image');
+    const elementImageButton = elementCard.querySelector('.element__image');
+    const popupFullImg = page.querySelector('.popup-img__full-img');
+    const popupFullImgText = page.querySelector('.popup-img__full-img-text');
 
     elementImage.src = elem.link;
     elementImage.alt = elem.name;
@@ -64,9 +72,6 @@ function createCard (elem) {
         evt.target.classList.toggle('element__like-button_active');
     });
 
-    const elementImageButton = elementCard.querySelector('.element__image');
-    const popupFullImg = page.querySelector('.popup-img__full-img');
-    const popupFullImgText = page.querySelector('.popup-img__full-img-text');
     elementImageButton.addEventListener('click', function () {
         openPopup(popupOpenedImg);
         popupFullImg.src = elementImage.src;
@@ -89,12 +94,10 @@ function createCard (elem) {
 initialCards.forEach(element => elementsList.append(createCard(element)));
 /* Конец. Добавление начальных карточек */
 
-// Обработчик «отправки» формы, хотя пока
-// она никуда отправляться не будет
+// Обработчик «отправки» формы
 function handleProfileSubmit (evt) {
-    evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-                                                // Так мы можем определить свою логику отправки.
-                                                // О том, как это делать, расскажем позже.
+    evt.preventDefault(); 
+
     profileName.textContent = nameInput.value;
     profileJob.textContent = jobInput.value;
     closePopup(popupProfileEdit);
@@ -105,10 +108,6 @@ function handleProfileSubmit (evt) {
 formProfileEdit.addEventListener('submit', handleProfileSubmit); 
 
 /* Начало. Добавление элемента */
-const formAddElement = page.querySelector('.popup__container-form_add-element');
-
-const placeNameInput = formAddElement.querySelector('.popup__container-line_theme_place-name');
-const placeLinkInput = formAddElement.querySelector('.popup__container-line_theme_place-link');
 
 function handleNewCardSubmit (evt) {
     evt.preventDefault();
@@ -120,8 +119,12 @@ function handleNewCardSubmit (evt) {
     elementsList.prepend(createCard(newCard));
 
     closePopup(popupAddElement);
+    /* Пробовал сделать через reset(). Почему-то не работает :( */
     placeNameInput.value = '';
     placeLinkInput.value = '';
+
+    popupButtonSubmit.setAttribute('disabled', '');
+    popupButtonSubmit.classList.add('popup__button_disabled');
 }
 
 formAddElement.addEventListener('submit', handleNewCardSubmit);
@@ -136,7 +139,6 @@ function escapeButton(evt) {
 }
 
 /* Закрытие popup по клику на тёмное место */
-const popups = Array.from(document.querySelectorAll('.popup'));
 popups.forEach((popupElement) => {
     popupElement.addEventListener('click', function (evt) {
         if (evt.target.classList.contains('popup_opened')) {

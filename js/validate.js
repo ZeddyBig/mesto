@@ -41,7 +41,6 @@ const checkButtonValidity = ({ inactiveButtonClass }, form, button) => {
     }
 }
 
-
 const setEventListeners = (formElement) => {
   const inputList = Array.from(formElement.querySelectorAll('.popup__form'));
   inputList.forEach((inputElement) => {
@@ -53,29 +52,29 @@ const setEventListeners = (formElement) => {
 
 
 function enableValidation({ formSelector, inputSelector, submitButtonSelector, ...rest }) {
-    const formList = Array.from(document.querySelectorAll(formSelector)); 
-	formList.forEach((formElement) => {
+  const formList = Array.from(document.querySelectorAll(formSelector)); 
+  formList.forEach((formElement) => {
 		formElement.addEventListener('submit', (evt) => {
 		  evt.preventDefault();
 		});
 
-	    formElement.addEventListener('submit', (event) => formSubmit(event, formSelector));
-	    const inputs = formElement.querySelectorAll(inputSelector);
-	    const button = formElement.querySelector(submitButtonSelector);
+    formElement.addEventListener('submit', (event) => formSubmit(event, formSelector));
+    const inputs = formElement.querySelectorAll(inputSelector);
+    const button = formElement.querySelector(submitButtonSelector);
 
-	    formElement.addEventListener('reset', () => {
-	        disableButton(rest, button);
-	    });
+    formElement.addEventListener('reset', () => {
+        disableButton(rest, button);
+    });
 
-	    checkButtonValidity(rest, formElement, button);
+    checkButtonValidity(rest, formElement, button);
 
-	    inputs.forEach(input => {
-	        input.addEventListener('input', (event) => {
-	            checkInputValidity(rest, formElement, input);
-	            checkButtonValidity(rest, formElement, button);
-	        });
-	    });
-    }); 
+    inputs.forEach(input => {
+        input.addEventListener('input', (event) => {
+            checkInputValidity(rest, formElement, input);
+            checkButtonValidity(rest, formElement, button);
+        });
+    });
+  }); 
 }
 
 enableValidation({
