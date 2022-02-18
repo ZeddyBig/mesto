@@ -1,8 +1,5 @@
 const formSubmit = (event, form) => {
     event.preventDefault();
-    if (form.validity.valid) {
-        form.reset();
-    }
 }
 
 const setInputValid = ({inputErrorClass, errorClass}, errorMessage, input) => {

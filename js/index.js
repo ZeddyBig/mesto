@@ -20,7 +20,6 @@ const placeLinkInput = formAddElement.querySelector('.popup__container-line_them
 const popups = Array.from(document.querySelectorAll('.popup'));
 const popupButtonSubmit = popupAddElement.querySelector('.popup__button');
 
-
 function openPopup(popup) {
 	popup.classList.add('popup_opened');
     document.addEventListener('keydown', escapeButton);
@@ -30,28 +29,6 @@ function closePopup(popup) {
 	popup.classList.remove('popup_opened');
     document.addEventListener('keydown', escapeButton);
 };
-
-profileEditButton.addEventListener('click', function() {
-	openPopup(popupProfileEdit);
-	nameInput.value = profileName.textContent;
-	jobInput.value = profileJob.textContent;
-});
-
-profileAddButton.addEventListener('click', function() { 
-    openPopup(popupAddElement);
-});
-
-popupCloseButtonEdit.addEventListener('click', function() {
-    closePopup(popupProfileEdit);
-});
-
-popupCloseButtonElement.addEventListener('click', function() {
-    closePopup(popupAddElement);
-});
-
-popupCloseButtonImg.addEventListener('click', function() {
-    closePopup(popupOpenedImg);
-});
 
 // ---------------------------------------------------------------------------
 
@@ -119,9 +96,7 @@ function handleNewCardSubmit (evt) {
     elementsList.prepend(createCard(newCard));
 
     closePopup(popupAddElement);
-    /* Пробовал сделать через reset(). Почему-то не работает :( */
-    placeNameInput.value = '';
-    placeLinkInput.value = '';
+    formAddElement.reset();
 
     popupButtonSubmit.setAttribute('disabled', '');
     popupButtonSubmit.classList.add('popup__button_disabled');
@@ -145,4 +120,28 @@ popups.forEach((popupElement) => {
             closePopup(popupElement);
         }
     });
+});
+
+// Обработчики
+
+profileEditButton.addEventListener('click', function() {
+	openPopup(popupProfileEdit);
+	nameInput.value = profileName.textContent;
+	jobInput.value = profileJob.textContent;
+});
+
+profileAddButton.addEventListener('click', function() { 
+    openPopup(popupAddElement);
+});
+
+popupCloseButtonEdit.addEventListener('click', function() {
+    closePopup(popupProfileEdit);
+});
+
+popupCloseButtonElement.addEventListener('click', function() {
+    closePopup(popupAddElement);
+});
+
+popupCloseButtonImg.addEventListener('click', function() {
+    closePopup(popupOpenedImg);
 });
