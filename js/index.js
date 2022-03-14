@@ -1,3 +1,5 @@
+import { FormValidator } from './FormValidator.js';
+
 const page = document.querySelector('.page');
 const profileEditButton = page.querySelector('.profile__edit');
 const profileAddButton = page.querySelector('.profile__add-button');
@@ -19,6 +21,23 @@ const placeNameInput = formAddElement.querySelector('.popup__container-line_them
 const placeLinkInput = formAddElement.querySelector('.popup__container-line_theme_place-link');
 const popups = Array.from(document.querySelectorAll('.popup'));
 const popupButtonSubmit = popupAddElement.querySelector('.popup__button');
+
+/* -- Валидация форм -- */
+const validationConfig = {
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__button',
+    inactiveButtonClass: 'popup__button_disabled',
+    inputErrorClass: 'popup__input-type-error',
+    errorClass: 'popup__error_active'
+}
+
+const popupAddElementValidator = new FormValidator(validationConfig, popupAddElement);
+const formProfileEditValidator = new FormValidator(validationConfig, formProfileEdit);
+
+popupAddElementValidator.enableValidation();
+formProfileEditValidator.enableValidation();
+/* ------------------------------------------ */
 
 function openPopup(popup) {
 	popup.classList.add('popup_opened');
