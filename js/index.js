@@ -67,13 +67,27 @@ popupAddElementValidator.enableValidation();
 formProfileEditValidator.enableValidation();
 /* ------------------------------------------ */
 
+function handleCardClick () {
+    const popupFullImg = document.querySelector('.popup-img__full-img');
+    const popupFullImgText = document.querySelector('.popup-img__full-img-text');
+
+    popupFullImg.src = this._link;
+    popupFullImg.alt = this._name;
+    popupFullImgText.textContent = this._name;
+
+    openPopup(popupOpenedImg);
+}
+
 /* Добавление любой карточки */
 
-const renderCard = (data, wrap) => {
-    const card = new Card(data, elementTemplate);
+function buildCard(data) {
+    const card = new Card(data, elementTemplate, handleCardClick);
     const cardElement = card.createCard();
+    return cardElement
+}
 
-    wrap.prepend(cardElement);
+const renderCard = (data, wrap) => {
+    wrap.prepend(buildCard(data));
 }
 
 /* Добавление начальных карточек */
@@ -107,9 +121,6 @@ function handleNewCardSubmit (evt) {
     
     closePopup(popupAddElement);
     formAddElement.reset();
-
-    popupButtonSubmit.setAttribute('disabled', '');
-    popupButtonSubmit.classList.add('popup__button_disabled');
 }
 
 formAddElement.addEventListener('submit', handleNewCardSubmit);
@@ -130,20 +141,21 @@ profileEditButton.addEventListener('click', function() {
 	openPopup(popupProfileEdit);
 	nameInput.value = profileName.textContent;
 	jobInput.value = profileJob.textContent;
+    formProfileEditValidator.resetValidation();
 });
 
 profileAddButton.addEventListener('click', function() { 
     openPopup(popupAddElement);
+    popupAddElementValidator.resetValidation();
 });
 
-popupCloseButtonEdit.addEventListener('click', function() {
-    closePopup(popupProfileEdit);
-});
-
-popupCloseButtonElement.addEventListener('click', function() {
-    closePopup(popupAddElement);
-});
-
-popupCloseButtonImg.addEventListener('click', function() {
-    closePopup(popupOpenedImg);
+popups.forEach((popup) => {
+    popup.addEventListener('mousedown', (evt) => {
+        if (evt.target.classList.contains('popup_opened')) {
+            closePopup(popup)
+        }
+        if (evt.target.classList.contains('popup__close-button')) {
+            closePopup(popup)
+        }
+    })
 });

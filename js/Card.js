@@ -1,10 +1,11 @@
 import {openPopup, popupOpenedImg} from './utils.js';
 
 export class Card {
-    constructor (data, cardTemptaleSelector) {
+    constructor (data, cardTemptaleSelector, handleCardClick) {
         this._elementTemplate = cardTemptaleSelector.content.querySelector('.element');
         this._name = data.name;
         this._link = data.link;
+        this._handleCardClick = handleCardClick;
     }
 
     _handleLikeIcon = () => {
@@ -15,22 +16,13 @@ export class Card {
         this._elementCard.remove();
     }
 
-    _handlePreviewPicture = () => {
-        const popupFullImg = document.querySelector('.popup-img__full-img');
-        const popupFullImgText = document.querySelector('.popup-img__full-img-text');
-
-        popupFullImg.src = this._link;
-        popupFullImg.alt = this._name;
-        popupFullImgText.textContent = this._name;
-
-        openPopup(popupOpenedImg);
-    }
-
     _setEventListeners() {
         const elementTrash = this._elementCard.querySelector('.element__trash');
         elementTrash.addEventListener('click', this._handleDeleteCard);
         this._likeButton.addEventListener('click', this._handleLikeIcon);
-        this._elementImageButton.addEventListener('click', this._handlePreviewPicture);
+        this._elementImageButton.addEventListener('click', () => {
+            this._handleCardClick(this._name, this._link)
+        });
     }
 
     createCard() {
