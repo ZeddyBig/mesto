@@ -1,6 +1,7 @@
-import {openPopup, closePopup, popupOpenedImg} from './utils.js';
+//import {openPopup, closePopup, popupOpenedImg} from './utils.js';
 import { FormValidator } from './FormValidator.js';
 import { Card } from './Card.js';
+import { Popup } from './Popup.js';
 
 const initialCards = [ 
     {
@@ -45,7 +46,7 @@ const formAddElement = page.querySelector('.popup__container-form_add-element');
 const placeNameInput = formAddElement.querySelector('.popup__container-line_theme_place-name');
 const placeLinkInput = formAddElement.querySelector('.popup__container-line_theme_place-link');
 const popups = Array.from(document.querySelectorAll('.popup'));
-const popupButtonSubmit = popupAddElement.querySelector('.popup__button');
+const popupOpenedImg = document.querySelector('.popup_type_opened-img');
 
 /* -- Валидация форм -- */
 const validationConfig = {
@@ -62,6 +63,10 @@ const formProfileEditValidator = new FormValidator(validationConfig, formProfile
 
 popupAddElementValidator.enableValidation();
 formProfileEditValidator.enableValidation();
+
+const popupOpenedImgClass = new Popup(popupOpenedImg);
+const popupProfileEditClass = new Popup(popupProfileEdit);
+const popupAddElementClass = new Popup(popupAddElement);
 /* ------------------------------------------ */
 
 function handleCardClick () {
@@ -72,7 +77,8 @@ function handleCardClick () {
     popupFullImg.alt = this._name;
     popupFullImgText.textContent = this._name;
 
-    openPopup(popupOpenedImg);
+    popupOpenedImgClass.openPopup();
+//    openPopup(popupOpenedImg);
 }
 
 /* Добавление любой карточки */
@@ -98,7 +104,8 @@ function handleProfileSubmit (evt) {
 
     profileName.textContent = nameInput.value;
     profileJob.textContent = jobInput.value;
-    closePopup(popupProfileEdit);
+    popupProfileEditClass.closePopup();
+    //closePopup(popupProfileEdit);
 }
 
 // Прикрепляем обработчик к форме:
@@ -116,7 +123,8 @@ function handleNewCardSubmit (evt) {
     }
     renderCard(newCard, elementsList);
     
-    closePopup(popupAddElement);
+    popupAddElementClass.closePopup();
+    //closePopup(popupAddElement);
     formAddElement.reset();
 }
 
@@ -127,7 +135,7 @@ formAddElement.addEventListener('submit', handleNewCardSubmit);
 popups.forEach((popupElement) => {
     popupElement.addEventListener('click', function (evt) {
         if (evt.target.classList.contains('popup_opened')) {
-            closePopup(popupElement);
+            popupElement.closePopup();
         }
     });
 });
@@ -135,24 +143,26 @@ popups.forEach((popupElement) => {
 // Обработчики
 
 profileEditButton.addEventListener('click', function() {
-	openPopup(popupProfileEdit);
+    popupProfileEditClass.openPopup();
+	//openPopup(popupProfileEdit);
 	nameInput.value = profileName.textContent;
 	jobInput.value = profileJob.textContent;
     formProfileEditValidator.resetValidation();
 });
 
-profileAddButton.addEventListener('click', function() { 
-    openPopup(popupAddElement);
+profileAddButton.addEventListener('click', function() {
+    popupAddElementClass.openPopup();
+    //openPopup(popupAddElement);
     popupAddElementValidator.resetValidation();
 });
 
 popups.forEach((popup) => {
     popup.addEventListener('mousedown', (evt) => {
         if (evt.target.classList.contains('popup_opened')) {
-            closePopup(popup)
+            popup.closePopup()
         }
         if (evt.target.classList.contains('popup__close-button')) {
-            closePopup(popup)
+            popup.closePopup()
         }
     })
 });

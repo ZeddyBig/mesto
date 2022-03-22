@@ -15,5 +15,3 @@ export function escapeButton(evt) {
         closePopup(openedPopup);
     }
 };
-
-export const popupOpenedImg = document.querySelector('.popup_type_opened-img');
