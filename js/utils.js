@@ -12,7 +12,7 @@ export function closePopup(popup) {
 export function escapeButton(evt) {
     if (evt.key === "Escape") {
         const openedPopup = document.querySelector('.popup_opened');
-        closePopup (openedPopup);
+        closePopup(openedPopup);
     }
 };
 
