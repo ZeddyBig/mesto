@@ -5,12 +5,12 @@ export class Popup {
 
     openPopup() {
         this._popupSelector.classList.add('popup_opened');
-        document.addEventListener('keydown', this._handleEscClose);
+        document.addEventListener('keydown', this._handleEscClose.bind(this));
     };
     
     closePopup() {
         this._popupSelector.classList.remove('popup_opened');
-        document.removeEventListener('keydown', this._handleEscClose); 
+        document.removeEventListener('keydown', this._handleEscClose.bind(this)); 
     };
 
     _handleEscClose(evt) {
@@ -19,5 +19,14 @@ export class Popup {
         }
     };
 
-    
+    setEventListeners() {
+        this._popupSelector.addEventListener('mousedown', (evt) => {
+            if (evt.target.classList.contains('popup_opened')) {
+                this.closePopup();
+            }
+            if (evt.target.classList.contains('popup__close-button')) {
+                this.closePopup();
+            }
+        })
+    }
 }
