@@ -1,5 +1,3 @@
-import {popupOpenedImg} from './index.js';
-
 export class Card {
     constructor (data, cardTemptaleSelector, handleCardClick) {
         this._elementTemplate = cardTemptaleSelector.content.querySelector('.element');
