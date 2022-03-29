@@ -6,21 +6,20 @@
 	<meta name="description" content="Спринт 4 Юрия Четверикова на Яндекс.Практикуме">
 	<meta name="keywords" content="html, css, js">
 	<meta name="author" content="Юрий Четвериков">
-	<link rel="stylesheet" type="text/css" href="pages/index.css">
 	<title>Место</title>
 </head>
 <body class="body-color">
 	<div class="page">
 		<header class="header">
 			<a href="#" class="header__logo">
-				<img src="images/logo.svg" alt="Логотип" class="header__logo-image">
+				<img src="<%=require('./images/logo.svg')%>" alt="Логотип" class="header__logo-image">
 			</a>
 		</header>
 
 		<main class="content">
 			<section class="profile">
 				<div class="profile__main">
-					<img src="images/Avatar.png" alt="Аватар" class="profile__avatar">
+					<img src="<%=require('./images/Avatar.png')%>" alt="Аватар" class="profile__avatar">
 					<div class="profile__info">
 						<div class="profile__name-and-edit">
 							<h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -73,7 +72,7 @@
 
 		<div class="popup popup_type_opened-img popup-img">
 			<div class="popup-img__container">
-				<img src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg" alt="" class="popup-img__full-img">
+				<img src="" alt="" class="popup-img__full-img">
 				<p class="popup-img__full-img-text"></p>
 				<button type="button" class="popup__close-button popup__close-button_type_opened-img"></button>
 			</div>
@@ -91,6 +90,5 @@
 		</li>
 	</template>
 
-	<script type="module" src="pages/index.js"></script>
 </body>
 </html>
