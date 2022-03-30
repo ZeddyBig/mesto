@@ -99,12 +99,10 @@ function handleProfileSubmit (info) {
 }
 
 /* Добавление элемента */
-function handleNewCardSubmit() {
-    /* Не понимаю как это вообще должно быть сделано. Да и метод _getInputValues по заданию у нас приватный. Или надо создать новый публичный метод для создания объекта с name и link, который использовать будет _getInputValues?
-    Почему нельзя так оставить? Почему замечание не в категории "Можно лучше"? */
-    const newCard = [{
-        name: placeNameInput.value,
-        link: placeLinkInput.value 
+function handleNewCardSubmit(data) {
+       const newCard = [{
+        name: data['place-name'],
+        link: data['place-url']
     }];
 
     const anyCard = new Section({
