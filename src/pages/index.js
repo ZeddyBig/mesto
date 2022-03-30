@@ -37,11 +37,8 @@ const initialCards = [
 const page = document.querySelector('.page');
 const profileEditButton = page.querySelector('.profile__edit');
 const profileAddButton = page.querySelector('.profile__add-button');
-const popupProfileEdit = page.querySelector('.popup_type_profile-edit');
 const popupAddElement = page.querySelector('.popup_type_add-element');
 const formProfileEdit = page.querySelector('.popup__container-form_profile-edit');
-const profileName = page.querySelector('.profile__name');
-const profileJob = page.querySelector('.profile__job');
 const nameInput = formProfileEdit.querySelector('.popup__container-line_theme_name');
 const jobInput = formProfileEdit.querySelector('.popup__container-line_theme_job');
 const elementTemplate = document.querySelector('#element-template');
@@ -49,7 +46,6 @@ const elementsList = document.querySelector('.elements__list');
 const formAddElement = page.querySelector('.popup__container-form_add-element');
 const placeNameInput = formAddElement.querySelector('.popup__container-line_theme_place-name');
 const placeLinkInput = formAddElement.querySelector('.popup__container-line_theme_place-link');
-export const popupOpenedImg = document.querySelector('.popup_type_opened-img');
 
 /* -- Валидация форм -- */
 const validationConfig = {
@@ -67,15 +63,15 @@ const formProfileEditValidator = new FormValidator(validationConfig, formProfile
 popupAddElementValidator.enableValidation();
 formProfileEditValidator.enableValidation();
 
-const popupOpenedImgClass = new PopupWithImage(popupOpenedImg);
+const popupOpenedImgClass = new PopupWithImage('.popup_type_opened-img');
 popupOpenedImgClass.setEventListeners();
-const popupProfileEditClass = new PopupWithForm(popupProfileEdit, handleProfileSubmit);
+const popupProfileEditClass = new PopupWithForm('.popup_type_profile-edit', handleProfileSubmit);
 popupProfileEditClass.setEventListeners();
-const popupAddElementClass = new PopupWithForm(popupAddElement, handleNewCardSubmit);
+const popupAddElementClass = new PopupWithForm('.popup_type_add-element', handleNewCardSubmit);
 popupAddElementClass.setEventListeners();
 /* ------------------------------------------ */
 
-export function handleCardClick(name, link) {
+function handleCardClick(name, link) {
     popupOpenedImgClass.openPopup(name, link);
 }
 
@@ -83,9 +79,7 @@ export function handleCardClick(name, link) {
 const cardsFirst = new Section({
     items: initialCards,
     renderer: (data) => {
-        const card = new Card(data, elementTemplate, handleCardClick);
-        const cardElement = card.createCard();
-        cardsFirst.addItem(cardElement);
+        cardsFirst.addItem(buildCard(data));
     }
 }, elementsList);
   
@@ -98,11 +92,7 @@ function buildCard(data) {
     return cardElement
 }
 
-const renderCard = (data, wrap) => {
-    wrap.prepend(buildCard(data));
-}
-
-const userInfo = new UserInfo({nameSelector: profileName, jobSelector: profileJob})
+const userInfo = new UserInfo({nameSelector: '.profile__name', jobSelector: '.profile__job'})
 function handleProfileSubmit (info) {
     userInfo.setUserInfo(info);
     popupProfileEditClass.closePopup();
@@ -110,12 +100,18 @@ function handleProfileSubmit (info) {
 
 /* Добавление элемента */
 function handleNewCardSubmit() {
-
-    const newCard = { 
+    const newCard = [{
         name: placeNameInput.value,
         link: placeLinkInput.value 
-    }
-    renderCard(newCard, elementsList);
+    }];
+
+    const anyCard = new Section({
+        items: newCard,
+        renderer: (data) => {
+            anyCard.addItem(buildCard(data));
+        }
+    }, elementsList);
+    anyCard.renderItems();
     
     popupAddElementClass.closePopup();
     formAddElement.reset();

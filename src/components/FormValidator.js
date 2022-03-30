@@ -61,11 +61,16 @@ export class FormValidator {
           });
      };
 
+     _hideInputError(inputElement) {
+          const errorElement = this._form.querySelector(`#error-${inputElement.id}`);      
+          inputElement.classList.remove(this._inputErrorClass);
+          errorElement.textContent = '';
+     }
+
      resetValidation() {
-          this._checkButtonValidity();
-    
+          this._checkButtonValidity(); 
           this._inputList.forEach((inputElement) => {
-               this._checkInputValidity(inputElement);
+               this._hideInputError(inputElement)
           });
      }
 
@@ -76,4 +81,5 @@ export class FormValidator {
 
           this._setEventListeners();         
      }
+
 }
