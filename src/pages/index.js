@@ -42,10 +42,7 @@ const formProfileEdit = page.querySelector('.popup__container-form_profile-edit'
 const nameInput = formProfileEdit.querySelector('.popup__container-line_theme_name');
 const jobInput = formProfileEdit.querySelector('.popup__container-line_theme_job');
 const elementTemplate = document.querySelector('#element-template');
-const elementsList = document.querySelector('.elements__list');
 const formAddElement = page.querySelector('.popup__container-form_add-element');
-const placeNameInput = formAddElement.querySelector('.popup__container-line_theme_place-name');
-const placeLinkInput = formAddElement.querySelector('.popup__container-line_theme_place-link');
 
 /* -- Валидация форм -- */
 const validationConfig = {
@@ -76,14 +73,14 @@ function handleCardClick(name, link) {
 }
 
 /* Добавление начальных карточек */
-const cardsFirst = new Section({
+const cardsAll = new Section({
     items: initialCards,
     renderer: (data) => {
-        cardsFirst.addItem(buildCard(data));
+        cardsAll.addItem(buildCard(data));
     }
-}, elementsList);
+}, '.elements__list');
   
-cardsFirst.renderItems();
+cardsAll.renderItems();
 
 /* Добавление любой карточки */
 function buildCard(data) {
@@ -98,21 +95,18 @@ function handleProfileSubmit (info) {
     popupProfileEditClass.closePopup();
 }
 
-/* Добавление элемента */
-function handleNewCardSubmit(data) {
-       const newCard = [{
+const getDataValue = (data) => {
+    return {
         name: data['place-name'],
         link: data['place-url']
-    }];
+    };
+};
 
-    const anyCard = new Section({
-        items: newCard,
-        renderer: (data) => {
-            anyCard.addItem(buildCard(data));
-        }
-    }, elementsList);
-    anyCard.renderItems();
-    
+/* Добавление элемента */
+function handleNewCardSubmit(data) {
+    const dataValue = getDataValue(data);
+    cardsAll.addItem(buildCard(dataValue));
+
     popupAddElementClass.closePopup();
     formAddElement.reset();
 }
@@ -120,14 +114,14 @@ function handleNewCardSubmit(data) {
 // Обработчики
 
 profileEditButton.addEventListener('click', function() {
-    popupProfileEditClass.openPopup();
     const {name, job} = userInfo.getUserInfo();
 	nameInput.value = name;
 	jobInput.value = job;
     formProfileEditValidator.resetValidation();
+    popupProfileEditClass.openPopup();
 });
 
 profileAddButton.addEventListener('click', function() {
-    popupAddElementClass.openPopup();
     popupAddElementValidator.resetValidation();
+    popupAddElementClass.openPopup();
 });
