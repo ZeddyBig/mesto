@@ -4,6 +4,25 @@ import { PopupWithForm } from '../components/PopupWithForm.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import { Section } from '../components/Section.js';
 import UserInfo from '../components/UserInfo.js';
+import { api } from '../components/Api.js'
+
+let userId;
+
+api.getProfile()
+    .then(res => {
+        userInfo.setUserInfo(res.name, res.about, res.avatar);
+
+        userId = res._id;
+    })
+
+api.getInitialCards()
+    .then(cardList => {
+        cardList.forEach(data => {
+        //    console.log(data);
+            const card = buildCard(data);
+            cardsAll.addItem(card);
+        })
+    })
 
 import '../pages/index.css';
 
@@ -43,6 +62,8 @@ const nameInput = formProfileEdit.querySelector('.popup__container-line_theme_na
 const jobInput = formProfileEdit.querySelector('.popup__container-line_theme_job');
 const elementTemplate = document.querySelector('#element-template');
 const formAddElement = page.querySelector('.popup__container-form_add-element');
+const avatar = page.querySelector('.profile__avatar_button');
+const popupAvatarElement = page.querySelector('.popup_type_update-avatar');
 
 /* -- Валидация форм -- */
 const validationConfig = {
@@ -56,9 +77,11 @@ const validationConfig = {
 
 const popupAddElementValidator = new FormValidator(validationConfig, popupAddElement);
 const formProfileEditValidator = new FormValidator(validationConfig, formProfileEdit);
+const avatarValidator = new FormValidator(validationConfig, popupAvatarElement);
 
 popupAddElementValidator.enableValidation();
 formProfileEditValidator.enableValidation();
+avatarValidator.enableValidation();
 
 const popupOpenedImgClass = new PopupWithImage('.popup_type_opened-img');
 popupOpenedImgClass.setEventListeners();
@@ -66,6 +89,10 @@ const popupProfileEditClass = new PopupWithForm('.popup_type_profile-edit', hand
 popupProfileEditClass.setEventListeners();
 const popupAddElementClass = new PopupWithForm('.popup_type_add-element', handleNewCardSubmit);
 popupAddElementClass.setEventListeners();
+const popupDeleteConfirm = new PopupWithForm('.popup_type_delete-confirm');
+popupDeleteConfirm.setEventListeners();
+const popupAvatar = new PopupWithForm('.popup_type_update-avatar', updateAvatarForm);
+popupAvatar.setEventListeners();
 /* ------------------------------------------ */
 
 function handleCardClick(name, link) {
@@ -74,7 +101,7 @@ function handleCardClick(name, link) {
 
 /* Добавление начальных карточек */
 const cardsAll = new Section({
-    items: initialCards,
+    items: [],
     renderer: (data) => {
         cardsAll.addItem(buildCard(data));
     }
@@ -83,31 +110,86 @@ const cardsAll = new Section({
 cardsAll.renderItems();
 
 /* Добавление любой карточки */
-function buildCard(data) {
-    const card = new Card(data, elementTemplate, handleCardClick);
+const buildCard = (data) => {
+    const card = new Card(
+        data,
+        elementTemplate, 
+        handleCardClick, 
+        (id) => {
+            popupDeleteConfirm.openPopup();
+            popupDeleteConfirm.changeSubmitForm(() => {
+                popupDeleteConfirm.changeButtonText('Удаление...');
+                api.deleteCard(id)
+                    .then(res => {
+                        card.deleteCard();
+                        popupDeleteConfirm.closePopup();
+                        console.log(res);
+                    })
+                    .catch((err) => console.log(err))
+                    .finally(() => {
+                        popupProfileEditClass.changeButtonText('Да')
+                    })
+            });
+        },
+        (id) => {
+            if (card.isLiked()) {
+                api.deleteLike(id)
+                    .then(res => {
+                        card.setLikes(res.likes)
+                    })
+            } else {
+                api.addLike(id)
+                .then(res => {
+                    card.setLikes(res.likes)
+                })
+            }
+        },
+        userId
+    );
     const cardElement = card.createCard();
     return cardElement
 }
 
-const userInfo = new UserInfo({nameSelector: '.profile__name', jobSelector: '.profile__job'})
-function handleProfileSubmit (info) {
-    userInfo.setUserInfo(info);
-    popupProfileEditClass.closePopup();
+const userInfo = new UserInfo({nameSelector: '.profile__name', jobSelector: '.profile__job', avatarSelector: '.profile__avatar'})
+function handleProfileSubmit ({name, job, avatar}) {  
+    popupProfileEditClass.changeButtonText('Сохранение...');
+    api.editProfile(name, job, avatar)
+        .then(res => {
+            userInfo.setUserInfo(res.name, res.about, res.avatar);
+            popupProfileEditClass.closePopup();
+        })
+        .catch((err) => console.log(err))
+        .finally(() => {
+            popupProfileEditClass.changeButtonText('Сохранить')
+        })
 }
 
-const getDataValue = (data) => {
-    return {
-        name: data['place-name'],
-        link: data['place-url']
-    };
-};
+function updateAvatarForm(data) {
+    popupAvatar.changeButtonText('Сохранение...');
+    api.updateAvatar(data['update-avatar'])
+        .then(res =>{
+            userInfo.setUserInfo(res.name, res.about, res.avatar);   
+            popupAvatar.closePopup();
+        })
+        .catch((err) => console.log(err))
+        .finally(() => {
+            popupAvatar.changeButtonText('Сохранить')
+        })
+}
 
 /* Добавление элемента */
 function handleNewCardSubmit(data) {
-    const dataValue = getDataValue(data);
-    cardsAll.addItem(buildCard(dataValue));
-
-    popupAddElementClass.closePopup();
+    popupAddElementClass.changeButtonText('Создание...');
+    api.addCard(data['place-name'], data['place-url'])
+        .then(res => {
+            const card = buildCard(res);
+            cardsAll.addItem(card);
+            popupAddElementClass.closePopup();
+        })
+        .catch((err) => console.log(err))
+        .finally(() => {
+            popupAddElementClass.changeButtonText('Создать')
+        })
     formAddElement.reset();
 }
 
@@ -124,4 +206,9 @@ profileEditButton.addEventListener('click', function() {
 profileAddButton.addEventListener('click', function() {
     popupAddElementValidator.resetValidation();
     popupAddElementClass.openPopup();
+});
+
+avatar.addEventListener('click', function() {
+    avatarValidator.resetValidation();
+    popupAvatar.openPopup();
 });

@@ -19,13 +19,15 @@
 		<main class="content">
 			<section class="profile">
 				<div class="profile__main">
-					<img src="<%=require('./images/Avatar.png')%>" alt="Аватар" class="profile__avatar">
+					<div class="profile__avatar_button">
+						<img src="<%=require('./images/Avatar.png')%>" alt="Аватар" class="profile__avatar">
+					</div>
 					<div class="profile__info">
 						<div class="profile__name-and-edit">
-							<h1 class="profile__name">Жак-Ив Кусто</h1>
+							<h1 class="profile__name"></h1>
 							<button type="button" class="profile__edit"></button>
 						</div>				
-						<p class="profile__job">Исследователь океана</p>
+						<p class="profile__job"></p>
 					</div>
 				</div>
 				<button type="button" class="profile__add-button"></button>
@@ -56,6 +58,28 @@
 			</div>
 		</div>	
 
+		<div class="popup popup_type_delete-confirm">
+			<div class="popup__container">
+				<h2 class="popup__container-heading">Вы уверены?</h2>
+				<button type="button" class="popup__close-button popup__close-button_element"></button>
+				<form action="#" name="popup__container-form" class="popup__container-form popup__container-form_delete-confirm popup__form">
+					<button type="submit" class="popup__container-button popup__button">Да</button>
+				</form>
+			</div>
+		</div>
+
+		<div class="popup popup_type_update-avatar">
+			<div class="popup__container">
+				<h2 class="popup__container-heading">Обновить аватар</h2>
+				<button type="button" class="popup__close-button popup__close-button_element"></button>
+				<form action="#" name="popup__container-form" class="popup__container-form popup__container-form_update-avatar popup__form">
+					<input id="update-avatar" type="url" value="" name="popup__container-line_theme_update-avatar" placeholder="Ссылка на картинку" required class="popup__container-line popup__container-line_theme_place-link popup__input">
+					<span id="error-update-avatar" class="popup__input-type-error popup__error-second popup__error popup__error_active"></span>
+					<button type="submit" class="popup__container-button popup__button">Сохранить</button>
+				</form>
+			</div>
+		</div>
+
 		<div class="popup popup_type_add-element">
 			<div class="popup__container">
 				<h2 class="popup__container-heading">Новое место</h2>
@@ -84,7 +108,10 @@
 			<img src="#" alt="" class="element__image">
 			<div class="element__description">
 				<h2 class="element__name"></h2>
-				<button type="button" class="element__like-button"></button>
+				<div class="element__button-and-like">
+					<button type="button" class="element__like-button"></button>
+					<span class="element__like-count"></span>
+				</div>				
 			</div>
 			<button type="button" class="element__trash"></button>
 		</li>
