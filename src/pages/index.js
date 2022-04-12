@@ -14,44 +14,19 @@ api.getProfile()
 
         userId = res._id;
     })
+    .catch(console.log)
 
 api.getInitialCards()
     .then(cardList => {
-        cardList.forEach(data => {
-        //    console.log(data);
+        const cardListReversed = cardList.reverse();
+        cardListReversed.forEach(data => {
             const card = buildCard(data);
             cardsAll.addItem(card);
         })
     })
+    .catch(console.log)
 
 import '../pages/index.css';
-
-const initialCards = [ 
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    }
-  ];
 
 const page = document.querySelector('.page');
 const profileEditButton = page.querySelector('.profile__edit');
@@ -123,12 +98,12 @@ const buildCard = (data) => {
                     .then(res => {
                         card.deleteCard();
                         popupDeleteConfirm.closePopup();
-                        console.log(res);
                     })
                     .catch((err) => console.log(err))
                     .finally(() => {
                         popupProfileEditClass.changeButtonText('Да')
                     })
+                    .catch(console.log)
             });
         },
         (id) => {
@@ -137,11 +112,13 @@ const buildCard = (data) => {
                     .then(res => {
                         card.setLikes(res.likes)
                     })
+                    .catch(console.log)
             } else {
                 api.addLike(id)
                 .then(res => {
                     card.setLikes(res.likes)
                 })
+                .catch(console.log)
             }
         },
         userId
@@ -162,6 +139,7 @@ function handleProfileSubmit ({name, job, avatar}) {
         .finally(() => {
             popupProfileEditClass.changeButtonText('Сохранить')
         })
+        .catch(console.log)
 }
 
 function updateAvatarForm(data) {
@@ -175,6 +153,7 @@ function updateAvatarForm(data) {
         .finally(() => {
             popupAvatar.changeButtonText('Сохранить')
         })
+        .catch(console.log)
 }
 
 /* Добавление элемента */
@@ -190,6 +169,7 @@ function handleNewCardSubmit(data) {
         .finally(() => {
             popupAddElementClass.changeButtonText('Создать')
         })
+        .catch(console.log)
     formAddElement.reset();
 }
 

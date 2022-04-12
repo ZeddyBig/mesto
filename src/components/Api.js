@@ -5,20 +5,22 @@ class Api {
       // тело конструктора
     }
 
+    _getResponseData(res) {
+        return res.ok ? res.json() : Promise.reject(res.status);
+    }
+
     getProfile() {
         return fetch(`${this._baseUrl}/users/me`, {
             headers: this._headers
         })
-        .then(res => res.ok ? res.json() : Promise.reject(res.status))
-        .catch(console.log)
+        .then(res => this._getResponseData(res))
     }
   
     getInitialCards() {
         return fetch(`${this._baseUrl}/cards`, {
             headers: this._headers
         })
-        .then(res => res.ok ? res.json() : Promise.reject(res.status))
-        .catch(console.log)
+        .then(res => this._getResponseData(res))
     }
 
     editProfile(name, about) {
@@ -30,8 +32,7 @@ class Api {
                 about
             })
         })
-        .then(res => res.ok ? res.json() : Promise.reject(res.status))
-        .catch(console.log)
+        .then(res => this._getResponseData(res))
     }
 
     addCard(name, link) {
@@ -43,8 +44,7 @@ class Api {
                 link
             })
         })
-        .then(res => res.ok ? res.json() : Promise.reject(res.status))
-        .catch(console.log)
+        .then(res => this._getResponseData(res))
     }
 
     deleteCard(id) {
@@ -52,8 +52,7 @@ class Api {
             method: "DELETE",
             headers: this._headers
         })
-        .then(res => res.ok ? res.json() : Promise.reject(res.status))
-        .catch(console.log)
+        .then(res => this._getResponseData(res))
     }
 
     deleteLike(id) {
@@ -61,8 +60,7 @@ class Api {
             method: "DELETE",
             headers: this._headers
         })
-        .then(res => res.ok ? res.json() : Promise.reject(res.status))
-        .catch(console.log)
+        .then(res => this._getResponseData(res))
     }
 
     addLike(id) {
@@ -70,8 +68,7 @@ class Api {
             method: "PUT",
             headers: this._headers
         })
-        .then(res => res.ok ? res.json() : Promise.reject(res.status))
-        .catch(console.log)
+        .then(res => this._getResponseData(res))
     }
 
     updateAvatar(avatar) {
@@ -82,17 +79,14 @@ class Api {
                 avatar
             })
         })
-        .then(res => res.ok ? res.json() : Promise.reject(res.status))
-        .catch(console.log)
-    }    
+        .then(res => this._getResponseData(res))
+    }
+}
   
-    // другие методы работы с API
-  }
-  
-  export const api = new Api({
+export const api = new Api({
     baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-39',
     headers: {
       authorization: '48897755-cf3d-4a12-816e-942272c6501d',
       'Content-Type': 'application/json'
     }
-  });
+});

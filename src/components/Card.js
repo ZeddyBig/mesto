@@ -53,6 +53,7 @@ export class Card {
 
     deleteCard() {
         this._elementCard.remove();
+        this._elementCard = null;
     }
 
     createCard() {
@@ -69,7 +70,6 @@ export class Card {
         if (this._ownerId !== this._userId) {
             this._elementCard.querySelector('.element__trash').style.display = 'none';
         }
-
 
         return this._elementCard;
     };
