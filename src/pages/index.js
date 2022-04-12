@@ -62,7 +62,7 @@ const nameInput = formProfileEdit.querySelector('.popup__container-line_theme_na
 const jobInput = formProfileEdit.querySelector('.popup__container-line_theme_job');
 const elementTemplate = document.querySelector('#element-template');
 const formAddElement = page.querySelector('.popup__container-form_add-element');
-const avatar = page.querySelector('.profile__avatar_button');
+const avatar = page.querySelector('.profile__button');
 const popupAvatarElement = page.querySelector('.popup_type_update-avatar');
 
 /* -- Валидация форм -- */

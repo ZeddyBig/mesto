@@ -11,7 +11,7 @@
 /* Начало profile */
 @import url(../blocks/profile/profile.css);
 @import url(../blocks/profile/__main/profile__main.css);
-@import url(../blocks/profile/__avatar/_button/profile__avatar_button.css);
+@import url(../blocks/profile/__button/profile__button.css);
 @import url(../blocks/profile/__avatar/profile__avatar.css);
 @import url(../blocks/profile/__name-and-edit/profile__name-and-edit.css);
 @import url(../blocks/profile/__name/profile__name.css);
