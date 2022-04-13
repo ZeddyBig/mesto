@@ -103,7 +103,6 @@ const buildCard = (data) => {
                     .finally(() => {
                         popupProfileEditClass.changeButtonText('Да')
                     })
-                    .catch(console.log)
             });
         },
         (id) => {
@@ -139,7 +138,6 @@ function handleProfileSubmit ({name, job, avatar}) {
         .finally(() => {
             popupProfileEditClass.changeButtonText('Сохранить')
         })
-        .catch(console.log)
 }
 
 function updateAvatarForm(data) {
@@ -153,7 +151,6 @@ function updateAvatarForm(data) {
         .finally(() => {
             popupAvatar.changeButtonText('Сохранить')
         })
-        .catch(console.log)
 }
 
 /* Добавление элемента */
@@ -169,7 +166,6 @@ function handleNewCardSubmit(data) {
         .finally(() => {
             popupAddElementClass.changeButtonText('Создать')
         })
-        .catch(console.log)
     formAddElement.reset();
 }
 
